@@ -9,6 +9,7 @@ class Institute(models.Model):
 
 class Subject(models.Model):
     subject_name = models.CharField(max_length=250)
+    total_marks = models.FloatField()
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
