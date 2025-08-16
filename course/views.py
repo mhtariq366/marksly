@@ -9,14 +9,14 @@ def add_course(request):
     if request.method == 'POST':
         course_code = request.POST.get('course_code')
         name = request.POST.get('name')
-        short_name = request.POST.get('short_name')
+        shortname = request.POST.get('shortname')
         credit_hours = int(request.POST.get('credit_hours'))
         remarks = request.POST.get('remarks')
 
         Course.objects.create(
             course_code = course_code,
             name = name,
-            short_name = short_name,
+            shortname = shortname,
             credit_hours = credit_hours,
             remarks = remarks
         )

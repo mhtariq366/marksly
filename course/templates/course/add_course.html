@@ -1,6 +1,6 @@
 <h1>Add Course</h1>
 
-<form method="post">
+<form action="{% url 'add_course' %}" method="post">
     {% csrf_token %}
     
     <label>Course Code:</label>
