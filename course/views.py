@@ -24,3 +24,6 @@ def add_course(request):
         return redirect('course_home')
     
     return render(request, 'course/add_course.html')
+
+def upload_course(request):
+    return render(request, 'course/upload_course.html')
