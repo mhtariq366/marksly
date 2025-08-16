@@ -1,6 +1,12 @@
-<h1>course home</h1>
+{% extends 'course/navbar_course.html' %}
 
-{{ courses }}
+{% block content %}
+    <h1>course home</h1>
 
-<a href="{% url 'add_course' %}">Add COurse</a>
+    {{ courses }}
+
+{% endblock %}
+
+
+
 
