@@ -17,6 +17,10 @@ def add_course(request):
             remarks = remarks
         )
 
-        return redirect('add_course')
+        return redirect('course_list')
     
     return render(request, 'siteadmin/add_course.html')
+
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, 'siteadmin/course_list.html', {'courses': courses})

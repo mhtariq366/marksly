@@ -1,0 +1,34 @@
+{% extends 'siteadmin/navbar_siteadmin.html' %}
+
+{% block content %}
+    <h1>Courses</h1>
+
+    <table border="1">
+        <tr>
+            <th>Course Code</th>
+            <th>Name</th>
+            <th>Short Name</th>
+            <th>Credit Hours</th>
+            <th>Remarks</th>
+            <th>Created Date</th>
+            <th>Updated Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.course_code }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.shortname }}</td>
+            <td>{{ course.credit_hours }}</td>
+            <td>{{ course.remarks }}</td>
+            <td>{{ course.created_date }}</td>
+            <td>{{ course.updated_date }}</td>
+            <td>
+                Edit - Delete
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
