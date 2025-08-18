@@ -1,0 +1,29 @@
+{% extends 'siteadmin/navbar_siteadmin.html' %}
+
+{% block content %}
+    <h1>Edit Course</h1>
+
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Course Code:</label><br>
+        <input type="text" name="course_code" value="{{ course.course_code }}"><br><br>
+
+        <label>Name:</label><br>
+        <input type="text" name="name" value="{{ course.name }}"><br><br>
+
+        <label>Short Name:</label><br>
+        <input type="text" name="shortname" value="{{ course.shortname }}"><br><br>
+
+        <label>Credit Hours:</label><br>
+        <input type="number" name="credit_hours" value="{{ course.credit_hours }}"><br><br>
+
+        <label>Remarks:</label><br>
+        <textarea name="remarks">{{ course.remarks }}</textarea><br><br>
+
+        <button type="submit">update</button>
+
+    </form>
+
+{% endblock %}
