@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Course
+from .models import Course, Teacher
 from django.contrib.auth import authenticate, login
 
 def add_course(request):
@@ -55,3 +55,8 @@ def siteadmin_login(request):
             return render(request, 'siteadmin/siteadmin_login.html', {'error': 'Not allowed'})
 
     return render(request, 'siteadmin/siteadmin_login.html')
+
+def teacher_list(request):
+    teachers = Teacher.objects.all()
+    return render(request, 'siteadmin/teacher_list.html', {'teachers': teachers})
+
