@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course, Teacher
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 
 def add_course(request):
     if request.method == 'POST':
@@ -59,4 +60,30 @@ def siteadmin_login(request):
 def teacher_list(request):
     teachers = Teacher.objects.all()
     return render(request, 'siteadmin/teacher_list.html', {'teachers': teachers})
+
+def add_teacher(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        department = request.POST.get('department')
+        phone_number = request.POST.get('phone_number')
+
+        error = ''
+
+        if not username or not password or not department:
+            error = "username, password, department are mandatory fields"
+        elif User.objects.filter(username=username).exists():
+            error = "username already exists"
+
+        if error:
+            return render(request, 'siteadmin/add_teacher.html', {'error': error})
+
+        user = User.objects.create_user(username=username, password=password, first_name=first_name, last_name=last_name)
+        Teacher.objects.create(user=user, department=department, phone_number=phone_number)
+
+        return redirect('teacher_list')
+
+    return render(request, 'siteadmin/add_teacher.html')
 

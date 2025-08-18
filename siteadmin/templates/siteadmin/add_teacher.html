@@ -1,0 +1,33 @@
+{% extends 'siteadmin/navbar_siteadmin.html' %}
+
+{% block content %}
+    <h1>Add Teacher</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Username:</label><br>
+        <input type="text" name="username" ><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password"><br>
+
+        <label>First Name:</label><br>
+        <input type="text" name="first_name"><br>
+
+        <label>Last Name:</label><br>
+        <input type="text" name="last_name"><br>
+
+        <label>Department:</label><br>
+        <input type="text" name="department"><br>
+
+        <label>Phone Number:</label><br>
+        <input type="text" name="phone_number"><br>
+
+        <button type="submit">Add User-Teacher</button>
+    </form>
+{% endblock %}
