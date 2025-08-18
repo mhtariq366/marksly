@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course
+from django.contrib.auth import authenticate, login
 
 def add_course(request):
     if request.method == 'POST':
@@ -39,3 +40,18 @@ def edit_course(request, id):
         return redirect('course_list')
 
     return render(request, 'siteadmin/edit_course.html', {'course': course})
+
+def siteadmin_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('course_list')
+        else:
+            return render(request, 'siteadmin/siteadmin_login.html', {'error': 'Not allowed'})
+
+    return render(request, 'siteadmin/siteadmin_login.html')
