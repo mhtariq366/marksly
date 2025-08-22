@@ -20,3 +20,15 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    student_id = models.CharField(max_length=20, unique=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    enrolled_courses = models.ManyToManyField('Course', blank=True, related_name='students')
+    department = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255, blank=True, null=True)
+    degree_program = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.user.username
