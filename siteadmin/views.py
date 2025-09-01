@@ -87,3 +87,37 @@ def add_teacher(request):
 
     return render(request, 'siteadmin/add_teacher.html')
 
+def edit_teacher(request, id):
+    teacher = get_object_or_404(Teacher, id=id)
+    user = teacher.user
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        department = request.POST.get('department')
+        phone_number = request.POST.get('phone_number')
+
+        error = ''
+
+        if not username or not password or not department:
+            error = "username, password, department are mandatory fields"
+        elif User.objects.filter(username=username).exists():
+            error = "username already exists"
+
+        if error:
+            return render(request, 'siteadmin/edit_teacher.html', {'error': error})
+
+        user.username = username
+        user.password = password
+        user.first_name - first_name
+        user.last_name = last_name
+        user.save()
+
+        teacher.department = department
+        teacher.phone_number = phone_number
+
+        return redirect('teacher_list')
+
+    return render(request, 'siteadmin/edit_teacher.html', {'teacher': teacher, 'user': user})
