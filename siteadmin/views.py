@@ -133,5 +133,5 @@ def delete_teacher(request, id):
     teacher = get_object_or_404(Teacher, id=id)
     teacher.delete()
 
-    return render('teacher_list')
+    return redirect('teacher_list')
 
