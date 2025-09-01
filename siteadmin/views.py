@@ -128,3 +128,10 @@ def edit_teacher(request, id):
         return redirect('teacher_list')
 
     return render(request, 'siteadmin/edit_teacher.html', {'teacher': teacher})
+
+def delete_teacher(request, id):
+    teacher = get_object_or_404(Teacher, id=id)
+    teacher.delete()
+
+    return render('teacher_list')
+
