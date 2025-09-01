@@ -42,6 +42,12 @@ def edit_course(request, id):
 
     return render(request, 'siteadmin/edit_course.html', {'course': course})
 
+def delete_course(request, id):
+    course = get_object_or_404(Course, id=id)
+    course.delete()
+    
+    return redirect('course_list')
+
 def siteadmin_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
