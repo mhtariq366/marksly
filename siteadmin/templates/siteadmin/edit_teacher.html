@@ -11,22 +11,22 @@
         {% csrf_token %}
 
         <label>Username:</label><br>
-        <input type="text" name="username" ><br>
+        <input type="text" name="username" value='{{teacher.user.username}}'><br>
 
         <label>Password:</label><br>
-        <input type="password" name="password"><br>
+        <input type="password" name="password" value='{{teacher.user.password}}'><br>
 
         <label>First Name:</label><br>
-        <input type="text" name="first_name"><br>
+        <input type="text" name="first_name" value='{{teacher.user.first_name}}'><br>
 
         <label>Last Name:</label><br>
-        <input type="text" name="last_name"><br>
+        <input type="text" name="last_name" value='{{teacher.user.last_name}}'><br>
 
         <label>Department:</label><br>
-        <input type="text" name="department"><br>
+        <input type="text" name="department" value='{{teacher.department}}'><br>
 
         <label>Phone Number:</label><br>
-        <input type="text" name="phone_number"><br>
+        <input type="text" name="phone_number" value='{{teacher.phone_number}}'><br>
 
         <button type="submit">Edit User-Teacher</button>
     </form>

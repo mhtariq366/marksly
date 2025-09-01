@@ -103,7 +103,7 @@ def edit_teacher(request, id):
 
         if not username or not password or not department:
             error = "username, password, department are mandatory fields"
-        elif User.objects.filter(username=username).exists():
+        elif User.objects.filter(username=username).exists() and username != teacher.user.username:
             error = "username already exists"
 
         if error:
@@ -111,13 +111,14 @@ def edit_teacher(request, id):
 
         user.username = username
         user.password = password
-        user.first_name - first_name
+        user.first_name = first_name
         user.last_name = last_name
         user.save()
 
         teacher.department = department
         teacher.phone_number = phone_number
+        teacher.save()
 
         return redirect('teacher_list')
 
-    return render(request, 'siteadmin/edit_teacher.html', {'teacher': teacher, 'user': user})
+    return render(request, 'siteadmin/edit_teacher.html', {'teacher': teacher})
